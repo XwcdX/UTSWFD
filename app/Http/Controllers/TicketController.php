@@ -17,10 +17,17 @@ class TicketController extends Controller
         if($valid->fails()){
             return back()->with('error',$valid->errors()->first());
         }
+        Ticket::create([
+            'passenger_name'=> $request->passenger_name,
+            'passenger_phone'=> $request->passenger_phone,
+            'seat_number'=> $request->seat_number,
+            'flight_id'=> $request->flight_id,
+        ]);
         return back()->with('success','Success');
     }
     public function confirmTicket(Ticket $ticket){
         $ticket->boarding_time = now();
+        $ticket->is_boarding = 1;
         $ticket->save();
         return back()->with('success','Ticket confirmed');
     }

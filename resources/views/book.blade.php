@@ -24,6 +24,7 @@
         <form action="{{ route('ticket.add') }}" method="POST" class="text-lg flex flex-col justify-start w-full">
             @csrf
             <main>
+                <input type="hidden" name="flight_id" value="{{ $flight->id }}">
                 <div class="w-[55%] flex justify-between">
                     <label class="mr-4 flex items-center" for="name">Passenger Name</label>
                     <input type="text" id="name" class="bg-[#f0f0f0] rounded my-4 w-72 py-1 px-2"

@@ -49,7 +49,7 @@
                         <td class="border p-2">{{ $ticket->passenger_phone }}</td>
                         <td class="border p-2">{{ $ticket->seat_number }}</td>
                         <td class="border p-2">
-                            @if ($ticket->is_boarding == false)
+                            @if ($ticket->is_boarding == 1)
                                 {{ \Carbon\Carbon::parse($ticket->boarding_time)->format('H:i:s') }}
                             @else
                                 <form action="{{ route('ticket.confirm', $ticket->id) }}" method="post"
@@ -64,7 +64,7 @@
                             <form action="{{ route('ticket.destroy', $ticket->id) }}" method="post" class="delete-form">
                                 @csrf
                                 @method('delete')
-                                <button type="submit" @if ($ticket->is_boarding == false) disabled @endif>
+                                <button type="submit" @if ($ticket->is_boarding == 1) disabled @endif>
                                     Delete
                                 </button>
                             </form>
